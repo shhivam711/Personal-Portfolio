@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shhivam - CSE Student</title>
+
+    <!-- Basic CSS Styles -->
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body & Typography */
+        body {
+            /* Exact background color from template */
+            background-color: #FFFEF5;
+            /* Dark text color */
+            color: #1A202C;
+            /* Using common system fonts */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* Re-usable Container */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Section Padding */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #FFFEF5;
+            z-index: 10;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #1A202C;
+        }
+
+        .nav-links ul {
+            list-style: none;
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1A202C;
+            font-weight: 600;
+        }
+        
+        .nav-socials a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #1A202C;
+            /* font-weight: 600; */ /* No longer needed for icons */
+        }
+
+        .nav-socials a svg {
+            width: 24px;
+            height: 24px;
+            fill: #1A202C; /* Icon color */
+            vertical-align: middle; /* Aligns icons nicely with nav links */
+        }
+        
+        .nav-socials a:hover svg {
+            fill: #4A5568; /* Darker hover color */
+        }
+
+        /* --- Section 1: Home --- */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .home-text {
+            flex-basis: 50%;
+        }
+
+        .home-text h1 {
+            /* Using a bold, impactful system font */
+            font-family: "Impact", "Arial Black", "Gadget", sans-serif;
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: #1A202C;
+            margin: 10px 0;
+        }
+
+        .home-text p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #4A5568; /* A slightly lighter text color */
+        }
+
+        .resume-button {
+            display: inline-block;
+            /* Button background color from template */
+            background-color: #F8F3B6;
+            /* Border from template */
+            border: 2px solid #1A202C;
+            border-radius: 6px;
+            color: #1A202C;
+            font-weight: 700;
+            padding: 12px 24px;
+            margin-top: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .home-image {
+            flex-basis: 40%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-wrapper {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            /* Decorative border from template */
+            border: 2px solid #F3EAB5;
+            padding: 10px;
+            position: relative;
+        }
+        
+        /* Decorative symbols from template */
+        .image-wrapper::before {
+            content: '++++';
+            font-family: monospace;
+            position: absolute;
+            top: 10%;
+            right: -10%;
+            font-size: 1.5rem;
+            color: #F3EAB5;
+            transform: rotate(15deg);
+        }
+
+        .image-wrapper::after {
+            content: '////';
+            font-family: monospace;
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            font-size: 1.5rem;
+            color: #F3EAB5;
+            transform: rotate(-15deg);
+        }
+
+        .home-image img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* --- Generic Section Styles --- */
+        .section-heading {
+            /* Giant heading style from template */
+            font-family: "Impact", "Arial Black", "Gadget", sans-serif;
+            font-size: 8rem;
+            /* Exact color from template */
+            color: #F8F3B6;
+            opacity: 0.8;
+            text-transform: uppercase;
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            z-index: -1;
+            user-select: none;
+        }
+        
+        .section-heading.right {
+            left: auto;
+            right: -10px;
+            text-align: right;
+        }
+        
+        .section-content {
+            margin-top: 40px;
+        }
+        
+        .section-intro {
+            font-size: 1.1rem;
+            color: #4A5568;
+            max-width: 600px;
+        }
+
+        /* --- Section 2: About --- */
+        
+        .about-content {
+            max-width: 700px;
+            font-size: 1.1rem;
+        }
+        
+        .about-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1A202C;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        /* Timeline from template */
+        .timeline {
+            list-style: none;
+            padding-left: 20px;
+            border-left: 2px solid #F3EAB5;
+        }
+        
+        .timeline li {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        /* Timeline bullet point */
+        .timeline li::before {
+            content: '•';
+            position: absolute;
+            left: -32px;
+            top: -10px;
+            font-size: 2.5rem;
+            color: #1A202C;
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1A202C;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1A202C;
+        }
+        
+        .timeline-desc {
+            font-size: 1rem;
+            color: #4A5568;
+        }
+        
+        /* Skills List */
+        .skills-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .skills-list li {
+            margin-bottom: 5px;
+        }
+
+
+        /* --- Section 3: Projects --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .project-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .project-card-content {
+            padding: 20px;
+        }
+        
+        .project-card-date {
+            font-size: 0.9rem;
+            color: #4A5568;
+            margin-bottom: 10px;
+        }
+
+        /* --- Section 4: Contact --- */
+        .contact-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-image {
+            flex-basis: 50%;
+        }
+        
+        .contact-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info {
+            flex-basis: 50%;
+        }
+        
+        .contact-info p {
+             font-size: 1.1rem;
+             color: #4A5568;
+             margin-bottom: 20px;
+        }
+        
+        .contact-info a {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1A202C;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #f0f0f0;
+            color: #4A5568;
+        }
+        
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 4rem;
+                margin-bottom: 0;
+            }
+
+            /* Stack Header Items */
+            nav {
+                flex-direction: column;
+                padding-bottom: 10px;
+            }
+            .nav-logo {
+                margin-bottom: 10px;
+            }
+            .nav-links {
+                margin-bottom: 10px;
+            }
+            .nav-links li {
+                margin: 0 10px;
+            }
+            .nav-socials a {
+                margin: 0 10px;
+            }
+
+            /* Stack Home Section */
+            #home {
+                min-height: auto;
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+            .home-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .home-text {
+                margin-top: 40px;
+            }
+            .home-text h1 {
+                font-size: 3.5rem;
+            }
+            .image-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+
+            /* Stack Project Grid */
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Stack Contact Section */
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="nav-logo">Shhivam.</a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="nav-socials">
+                    <a href="https://github.com/shhivam711" target="_blank" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.109-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.085 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/shhivam-singh-7726a6371" target="_blank" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Section 1: Home -->
+        <section id="home">
+            <div class="container">
+                <div class="home-content">
+                    <div class="home-text">
+                        <span>Hello, I'm Shhivam</span>
+                        <h1>CSE Student</h1>
+                        <p>at DTU, based in Delhi, India.</p>
+                        <a href="#projects" class="resume-button" target="_blank">View Projects</a>
+                    </div>
+                    <div class="home-image">
+                        <div class="image-wrapper">
+                            <img src="image.png" alt="Portrait of Shhivam">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: About Me, Education, Skills -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-heading">about.</h2>
+                <div class="section-content about-content">
+                   <p>
+                        I'm a first-year Computer Science engineer at <strong>Delhi Technological University (DTU)</strong> driven by a relentless ambition to build what's next. I view code not just as a subject, but as a tool for innovation and large-scale problem-solving. I am actively diving deep into complex challenges, determined to move beyond theory and engineer tangible, impactful solutions.
+                    </p>
+
+                    <!-- Education -->
+                    <h3>Education</h3>
+                    <ul class="timeline">
+                        <li>
+                            <span class="timeline-date">2025 - 2029 </span>
+                            <h4 class="timeline-title">B.Tech, Computer Science Engineering</h4>
+                            <p class="timeline-desc">Delhi Technological University (DTU), Delhi</p>
+                        </li>
+                        <li>
+                            <span class="timeline-date">2022 - 2024</span>
+                            <h4 class="timeline-title">High School (ICSE)</h4>
+                            <p class="timeline-desc">Mother Teresa Mission Higher Secondary School , Kanpur</p>
+                        </li>
+                    </ul>
+
+                    <!-- Skills -->
+                    <h3>Skills</h3>
+                    <ul class="skills-list">
+                        <li><strong>Programming:</strong> C++, Python, HTML, CSS, C, Java, DSA , Javascript , </li>
+                        <li><strong>Tools:</strong> Git & GitHub</li>
+                        <li><strong>Soft Skills:</strong> Problem Solving, Teamwork, Quick Learning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Projects -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-heading right">projects.</h2>
+                <p class="section-intro">
+                    Here are a couple of projects I've built while learning.
+                </p>
+                <div class="project-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <img src="Screenshot.png" alt="Project 1 Screenshot">
+                        <div class="project-card-content">
+                            <p class="project-card-date">November 15, 2025</p>
+                            <p><strong>Personal Portfolio Website:</strong> The very website you're looking at! Built from scratch using basic HTML and CSS.</p>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <img src="screenshot2.png" alt="Project 2 Screenshot">
+                        <div class="project-card-content">
+                            <p class="project-card-date">October 30, 2025</p>
+                            <p><strong>Profile Card:</strong> A simple profile card showing personal details and image using HTML and CSS.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Contact -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-heading">contact.</h2>
+                <div class="contact-content">
+                    <div class="contact-image">
+                        <img src="https://placehold.co/600x400/FFFEF5/1A202C?text=Get+In+Touch" alt="Contact image">
+                    </div>
+                    <div class="contact-info">
+                        <p>
+                            I'm always open to new opportunities, collaborations, or just a good tech chat. 
+                            Feel free to reach out!
+                        </p>
+                        <a href="mailto:shhivam_cse_25a05053@dtu.ac.in">shhivam_cse_25a05053@dtu.ac.in</a>
+                        <a href="https://www.linkedin.com/in/shhivam-singh-7726a6371/" target="_blank">linkedin.com/in/Shhivam</a>
+                        <a href="https://github.com/shhivam711" target="_blank">github.com/shhivam</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shhivam. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
